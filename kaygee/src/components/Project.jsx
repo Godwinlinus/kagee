@@ -15,10 +15,10 @@ const Project = () => {
   return (
     <section className="py-16">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-12 text-center text-black dark:text-white">Projects</h2>
+        <h2 className="text-4xl font-bold mb-12 text-center ">Projects</h2>
 
         {/* 2-column Masonry Grid */}
-        <div className="columns-2 gap-4 space-y-4">
+        <div className="columns-2 gap-4 space-y-4 z-40">
           {projects.map((project) => (
             <div
               key={project.id}
@@ -42,10 +42,10 @@ const Project = () => {
       {/* Modal */}
       {selected && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 p-6">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-3xl w-full overflow-hidden relative">
+          <div className="max-w-3xl w-full overflow-hidden relative">
             <button
               onClick={() => setSelected(null)}
-              className="absolute top-4 right-4 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 text-2xl font-bold"
+              className="absolute top-4 right-4 hover:text-gray-900 dark:hover:text-gray-100 text-2xl font-bold"
             >
               &times;
             </button>
@@ -57,9 +57,9 @@ const Project = () => {
             />
 
             <div className="p-6">
-              <h3 className="text-2xl font-bold mb-2 text-black dark:text-white">{selected.name}</h3>
+              <h3 className="text-2xl font-bold mb-2">{selected.name}</h3>
               <p className="text-gray-700 dark:text-gray-300 mb-4">{selected.description}</p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm">
                 Skills: {selected.skills.join(" · ")}
               </p>
             </div>

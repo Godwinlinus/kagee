@@ -1,57 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useTheme } from "../ThemeContext";
+import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
 
 const active = ({ isActive }) =>
   isActive
-    ? "text-black dark:text-white font-semibold transition-colors"
-    : "text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors";
+    ? "text-black dark:text-white font-semibold tracking-tight"
+    : "text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition";
 
 const Nav = () => {
   const { theme, toggleTheme } = useTheme();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="w-full py-6 bg-white dark:bg-gray-900 transition-colors rounded-full mx-4">
-      <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
+    <header className="w-full mx-auto px-6 mt-6">
+      <div
+        className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2
+        bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-full shadow-sm border border-white/20 dark:border-gray-700/30"
+      >
         {/* LOGO */}
-        <div className="text-lg font-bold tracking-tight text-black dark:text-white">
-          logo
+        <div className="text-xl font-extrabold tracking-tight text-black dark:text-white">
+          KAYGEE
         </div>
 
-        {/* NAVIGATION */}
-        <div className="flex items-center gap-8">
-          <nav className="hidden md:flex items-center gap-8 text-sm">
-            <NavLink to="/" className={active}>
-              Work
-            </NavLink>
-            <NavLink to="/about" className={active}>
-              About
-            </NavLink>
-            <NavLink to="/PlayGround/1" className={active}>
-              Playground
-            </NavLink>
-            <NavLink to="/contact" className={active}>
-              Contact
-            </NavLink>
-          </nav>
+        {/* DESKTOP NAV */}
+        <nav className="hidden md:flex items-center gap-10 text-sm">
+          <NavLink to="/" className={active}>Work</NavLink>
+          <NavLink to="/about" className={active}>About</NavLink>
+          <NavLink to="/PlayGround/1" className={active}>Exhibition</NavLink>
+        </nav>
 
-          {/* DARK MODE TOGGLE */}
+        {/* TOOLS */}
+        <div className="flex items-center gap-4">
+          {/* THEME TOGGLE */}
           <button
             onClick={toggleTheme}
-            className="flex items-center justify-center w-10 h-10 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-            aria-label="Toggle dark mode"
-            title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            className="p-2 rounded-xl bg-white/40 dark:bg-gray-800/40 border border-white/20 dark:border-gray-700/30 hover:bg-white/70 dark:hover:bg-gray-700 transition"
+            aria-label="Toggle theme"
           >
-            {theme === 'light' ? (
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-              </svg>
+            {theme === "light" ? (
+              <FiSun className="w-5 h-5 text-gray-700" />
             ) : (
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm5.657-9.193a1 1 0 00-1.414 0l-.707.707A1 1 0 005.05 6.464l.707-.707a1 1 0 011.414 0zM5 11a1 1 0 100-2H4a1 1 0 100 2h1z" clipRule="evenodd" />
-              </svg>
+              <FiMoon className="w-5 h-5 text-gray-300" />
             )}
           </button>
+
+          {/* MOBILE BUTTON */}
+          <button
+            onClick={() => setMobileOpen((v) => !v)}
+            className="md:hidden p-2 rounded-xl bg-white/40 dark:bg-gray-800/40 border
+            border-white/20 dark:border-gray-700/30 hover:bg-white/70 dark:hover:bg-gray-700 transition"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* OVERLAY */}
+      <div
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setMobileOpen(false)}
+      />
+
+      {/* MOBILE MENU */}
+      <div
+        className={`fixed top-24 left-0 right-0 mx-6 md:hidden transition-all duration-300 ${
+          mobileOpen ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col z-100 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl px-6 space-y-5">
+          <NavLink to="/" className={active} onClick={() => setMobileOpen(false)}>Work</NavLink>
+          <NavLink to="/about" className={active} onClick={() => setMobileOpen(false)}>About</NavLink>
+          <NavLink to="/PlayGround/1" className={active} onClick={() => setMobileOpen(false)}>Playground</NavLink>
+          <NavLink to="/contact" className={active} onClick={() => setMobileOpen(false)}>Contact</NavLink>
         </div>
       </div>
     </header>

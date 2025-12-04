@@ -14,7 +14,7 @@ export default function PlayGround() {
 
   return (
     <article>
-        <h2>welcome to my blog</h2>
+        <h2>I have tried to express the terrible passions of humanity by means of red and purple</h2>
         <button className="button" onClick={() => navigate(-1)}>Back</button>
         <h1>{fakePost.title}</h1>
         <p>{fakePost.body}</p>
