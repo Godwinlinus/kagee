@@ -19,9 +19,9 @@ const Nav = () => {
         bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-full shadow-sm border border-white/20 dark:border-gray-700/30"
       >
         {/* LOGO */}
-        <div className="text-xl font-extrabold tracking-tight text-black dark:text-white">
-          KAYGEE
-        </div>
+        <NavLink to="/" className="">
+          <img src="/images/KayGee.svg" alt="logo" className="h-6 w-auto font-" />
+        </NavLink>
 
         {/* DESKTOP NAV */}
         <nav className="hidden md:flex items-center gap-10 text-sm">
