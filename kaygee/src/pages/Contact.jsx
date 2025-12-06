@@ -5,5 +5,6 @@ export default function Contact() {
       <h1>Contact</h1>
       <p>Email: your@address.com</p>
     </section>
+
   );
 }
