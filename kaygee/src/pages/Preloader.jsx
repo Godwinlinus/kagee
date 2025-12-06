@@ -69,7 +69,7 @@ export default function Preloader({
       aria-live="polite"
       aria-hidden={!visible}
       className={`fixed inset-0 z-50 flex items-center justify-center
-        bg-white dark:bg-gray-900 text-black dark:text-white transition-opacity
+        bg-[#181717] transition-opacity
         ${visible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
     >
       <div className="flex flex-col items-center gap-4 px-6">
@@ -81,33 +81,17 @@ export default function Preloader({
           aria-hidden="true"
         >
           <ImSpinner2
-            className="w-14 h-14"
+            size={20}
             style={{
-              color: "transparent",
-              WebkitTextStroke: "2px rgba(59,130,246,0.9)" // subtle ring look
+              color: "transparent", // subtle ring look
             }}
           />
-          {/* colored arc above the spinner */}
-          <svg
-            viewBox="0 0 48 48"
-            className="absolute inset-0 w-20 h-20"
-            aria-hidden="true"
-          >
-            <defs>
-              <linearGradient id="g1" x1="0" x2="1">
-                <stop offset="0" stopColor="#8b5cf6" />
-                <stop offset="1" stopColor="#ec4899" />
-              </linearGradient>
-            </defs>
-            <circle cx="24" cy="24" r="14" stroke="rgba(15,23,42,0.06)" strokeWidth="3" fill="none" />
-            <path d="M38 24a14 14 0 00-14-14" stroke="url(#g1)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-          </svg>
 
           {/* pulsing dot */}
           <span
             className={`absolute w-3 h-3 rounded-full -right-2 -top-2
               ${animPlay ? "animate-pulse-dot" : ""}`}
-            style={{ background: "linear-gradient(90deg,#8b5cf6,#ec4899)" }}
+            style={{ background: "#ffff" }}
           />
         </div>
       </div>

@@ -11,6 +11,19 @@ const Project = () => {
   ];
 
   // Create 12 project entries, cycling the images and giving each a random height
+  // Define text-only tiles you want to show instead of an image (keyed by project id)
+  const textTiles = {
+    // Example: show custom text at project slot 3 and 7 — change keys and text as you like
+    3: {
+      title: "About This Series",
+      body: "A short note about this collection — handcrafted experiments in lighting and form.",
+    },
+    7: {
+      title: "Coming Soon",
+      body: "More projects are being added — stay tuned for new work and case studies.",
+    },
+  };
+
   const projects = Array.from({ length: 12 }, (_, i) => {
     const id = i + 1;
     const img = images[i % images.length];
@@ -18,6 +31,8 @@ const Project = () => {
       id,
       name: `Project ${id}`,
       description: `Detailed description of project ${id}. Tools and techniques highlighted here.`,
+      // if a text tile exists for this id, include it; otherwise image remains
+      text: textTiles[id] || null,
       skills: ["React", "Tailwind", "Design", "3D Modeling"].slice(0, (i % 4) + 1),
       image: img,
       // random height between 200 and 520 for varied masonry
@@ -28,31 +43,34 @@ const Project = () => {
   const [selected, setSelected] = useState(null);
 
   return (
-    <section className="py-16">
+    <section id="work" className="py-16">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-12 text-center text-black dark:text-white">
-          Projects
-        </h2>
 
         {/* Masonry using CSS columns; each item gets its own randomized height */}
-        <div className="columns-2 gap-4 space-y-4">
+        <div className="columns-2 gap-4 space-y-4 md:columns-3 lg:columns-4">
           {projects.map((project) => (
             <div
               key={project.id}
               style={{ height: `${project.height}px` }}
-              className="break-inside-avoid relative cursor-pointer rounded-xl overflow-hidden mb-4"
+              className="break-inside-avoid relative cursor-pointer overflow-hidden mb-4"
               onClick={() => setSelected(project)}
             >
-              <img
-                src={project.image}
-                alt={project.name}
-                className="w-full h-full object-cover rounded-xl transform transition-transform duration-500 hover:scale-105"
-                loading="lazy"
-              />
-
-              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-2 text-sm text-center opacity-0 hover:opacity-100 transition-opacity">
-                {project.name}
-              </div>
+              {/* If this slot is a text tile, render text instead of an image */}
+              {project.text ? (
+                <div className="w-full h-full flex items-center justify-center p-4 text-center">
+                  <div>
+                    <div className="font-semibold text-lg mb-2">{project.text.title}</div>
+                    <div className="text-sm">{project.text.body}</div>
+                  </div>
+                </div>
+              ) : (
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-105"
+                  loading="lazy"
+                />
+              )}
             </div>
           ))}
         </div>
@@ -61,7 +79,7 @@ const Project = () => {
       {/* Modal */}
       {selected && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 p-6">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-3xl w-full overflow-hidden relative">
+          <div className="max-w-3xl w-full overflow-hidden relative">
             <button
               onClick={() => setSelected(null)}
               className="absolute top-4 right-4 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 text-2xl font-bold"

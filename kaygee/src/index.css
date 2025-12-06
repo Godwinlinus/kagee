@@ -1,25 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
 @import "tailwindcss";
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  
+
+@theme {
+  --font-display: "Merriweather", serif;
   --color-background-white: #F3F3F3;
   --color-background-black: #181717;
   --color-text-black: #121212;
   --color-text-white: #FFFFFF;
   --color-main-grey: #606060;
-}
 
+}
 body {
-  margin: 0;
-  padding: 0;
   background-color: var(--color-background-white);
   color: var(--color-text-black);
   transition: background-color 0.3s ease, color 0.3s ease;
