@@ -43,11 +43,11 @@ const Project = () => {
   const [selected, setSelected] = useState(null);
 
   return (
-    <section id="work" className="py-16">
+    <section id="work" className="mt-20 py-16">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Masonry using CSS columns; each item gets its own randomized height */}
-        <div className="columns-2 gap-4 space-y-4 md:columns-3 lg:columns-4">
+        <div className="columns-1 sm:columns-2 gap-4 space-y-4 md:columns-3 lg:columns-4">
           {projects.map((project) => (
             <div
               key={project.id}

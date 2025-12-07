@@ -57,7 +57,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="w-full relative min-h-screen flex items-center overflow-hidden" aria-label="Intro hero">
+    <section className="w-full relative mt-60 flex items-center overflow-hidden" aria-label="Intro hero">
       <div className="container mx-auto px-6 relative">
         <div className="flex flex-col md:flex-row items-start md:items-center gap-12 md:gap-24 w-full">
           {/* Header with Framer Motion typing */}

@@ -22,7 +22,7 @@ const skills = [
 
 export default function About() {
   return (
-    <section className="max-w-6xl mx-auto px-6 mt-20 md:mt-40">
+    <section className="max-w-6xl min-h-screen mx-auto px-6 mt-40 md:mt-40">
       <div className="grid gap-12 md:grid-cols-3 items-start border-b pb-16">
 
         {/* TEXT BLOCK */}
