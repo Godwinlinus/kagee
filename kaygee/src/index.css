@@ -6,14 +6,18 @@
 @theme {
   --font-display: "Merriweather", serif;
   --color-background-white: #F3F3F3;
-  --color-background-black: #181717;
+  --color-background-black: #07000B;
+  --color-soft-black: #181A18;
+  --color-deep-black: #252324;
+  --color-bluish-black: #1A1A1D;
   --color-text-black: #121212;
   --color-text-white: #FFFFFF;
   --color-main-grey: #606060;
+  --color-golden: #FFD700;
 
 }
 body {
-  background-color: var(--color-background-white);
+  background-color: var(--color-background-black);
   color: var(--color-text-black);
   transition: background-color 0.3s ease, color 0.3s ease;
 }

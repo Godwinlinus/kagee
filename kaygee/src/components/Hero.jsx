@@ -57,12 +57,13 @@ const Hero = () => {
   };
 
   return (
-    <section className="w-full relative mt-60 flex items-center overflow-hidden" aria-label="Intro hero">
+    <section className="w-full relative mt-25 flex items-center overflow-hidden" aria-label="Intro hero">
       <div className="container mx-auto px-6 relative">
         <div className="flex flex-col md:flex-row items-start md:items-center gap-12 md:gap-24 w-full">
           {/* Header with Framer Motion typing */}
           <h1 className="flex-1 text-5xl tracking-tighter md:text-8xl self-start leading-tight">
-            <TypingHeader text="Hello, I’m  KayGee..." />
+            <h2 className="text-white text-3xl font-bold tracking-wide">Hello, i am </h2>
+            
           </h1>
 
           {/* Paragraph */}
